@@ -95,7 +95,7 @@
 
             const sbipLink = document.createElement('a');
             sbipLink.title = 'Search by IP';
-            sbipLink.href = `../mod.php?/search/ip&ip=${ip}`;
+            sbipLink.href = `https://karachan.org/mod.php?/search/ip&ip=${ip}`;
             sbipLink.textContent = 'SBIP';
 
             const separator = document.createTextNode(' / ');
