@@ -15,14 +15,18 @@
     const config = {
         newReasons: [
             {name: 'Residential', reason: 'residential proxy', expires: '30d', appeal: '1w'},
-            {name: 'TikTok', reason: 'tiksraka', expires: '1d', appeal: '2h'},
+            {name: 'Kółeczka', reason: 'kółeczka atencyjne', expires: '3d', appeal: '2h'},
+            {name: 'Rak', reason: 'rak', expires: '1d', appeal: '2h'},
             {name: 'Implikowanie', reason: 'implikowanie', expires: '12h', appeal: '2h'},
-            {name: '/fz/', reason: '/fz/ ->', expires: '6h', appeal: '1h'},
-            {name: '/p/', reason: '/p/ ->', expires: '6h', appeal: '1h'},
-            {name: '/s/', reason: '/s/ ->', expires: '6h', appeal: '1h'}
+            {name: 'TikTok', reason: 'tiksraka', expires: '6h', appeal: '1h'},
+            {name: '/fz/', reason: '/fz/ ->', expires: '1h', appeal: '0'},
+            {name: '/g/', reason: '/g/ ->', expires: '1h', appeal: '0'},
+            {name: '/p/', reason: '/p/ ->', expires: '1h', appeal: '0'},
+            {name: '/s/', reason: '/s/ ->', expires: '1h', appeal: '0'}
         ],
         boardSelections: [
             {text: 'Wszystkie poza fz/, 4/ i kara/', excludedBoards: ['fz', '4', 'kara']},
+            {text: 'Wszystkie poza g/, 4/ i kara/', excludedBoards: ['g', '4', 'kara']},
             {text: 'Wszystkie poza p/, 4/ i kara/', excludedBoards: ['p', '4', 'kara']},
             {text: 'Wszystkie poza s/, 4/ i kara/', excludedBoards: ['s', '4', 'kara']}
         ]
