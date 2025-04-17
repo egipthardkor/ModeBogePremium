@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         ModeBoge Premium™
 // @namespace    https://karachan.org
-// @version      0.3
-// @description  Dodaje nowe powody banów oraz przycisk SBIP do adminControls
+// @version      0.4
+// @description  Skrypt dla moderatorów forum obrazkowego kurahen.ork
 // @author       egipthardkor
 // @match        https://karachan.org/*
 // @grant        none
@@ -14,15 +14,18 @@
 
     const config = {
         newReasons: [
-            {name: 'Residential', reason: 'residential proxy', expires: '30d', appeal: '1w'},
-            {name: 'Kółeczka', reason: 'kółeczka atencyjne', expires: '3d', appeal: '2h'},
+            {name: 'Residential', reason: 'residential proxy', expires: '30d', appeal: '3d'},
+            {name: 'Kółeczko', reason: 'zraczałe kółeczko', expires: '3d', appeal: '2h'},
+            {name: 'Przeklejki', reason: 'przeklejki', expires: '1d', appeal: '2h'},
             {name: 'Rak', reason: 'rak', expires: '1d', appeal: '2h'},
-            {name: 'Implikowanie', reason: 'implikowanie', expires: '12h', appeal: '2h'},
             {name: 'TikTok', reason: 'tiksraka', expires: '6h', appeal: '1h'},
-            {name: '/fz/', reason: '/fz/ ->', expires: '1h', appeal: '0'},
+            {name: 'Implikowanie', reason: 'implikowanie', expires: '6h', appeal: '1h'},
+            {name: 'Wykolejanie', reason: 'wykolejanie', expires: '3h', appeal: '0'},
+            {name: '/fz/', reason: '/fz/ ->', expires: '6h', appeal: '1h'},
             {name: '/g/', reason: '/g/ ->', expires: '1h', appeal: '0'},
-            {name: '/p/', reason: '/p/ ->', expires: '1h', appeal: '0'},
-            {name: '/s/', reason: '/s/ ->', expires: '1h', appeal: '0'}
+            {name: '/p/', reason: '/p/ ->', expires: '3h', appeal: '0'},
+            {name: '/s/', reason: '/s/ ->', expires: '1h', appeal: '0'},
+            {name: '/kara/', reason: '/kara/ ->', expires: '1h', appeal: '0'}
         ],
         boardSelections: [
             {text: 'Wszystkie poza fz/, 4/ i kara/', excludedBoards: ['fz', '4', 'kara']},
@@ -36,7 +39,9 @@
         $(document).ready(() => {
             const $reasonInput = $("input[name=reason]");
             const $expiresInput = $("input[name=expires]");
-            if (!$reasonInput.length || window.location.href.indexOf("https://karachan.org/mod.php?/bans/add") !== 0) return;
+            if (!$reasonInput.length || 
+                (window.location.href.indexOf("https://karachan.org/mod.php?/bans/add") !== 0 && 
+                 window.location.href.indexOf("https://karachan.org/mod.php?/rangebans/add") !== 0)) return;
 
             function insertSmallLink($after, text, callback) {
                 $(`<a href="#" class="lnkSmall">${text}</a>`)
@@ -92,6 +97,8 @@
             if (!ipElement) return;
 
             const ip = ipElement.textContent.trim();
+            ipElement.href = `https://www.whatismyip.com/ip/${ip}`;
+
             if (!ip || control.querySelector('[title="Search by IP"]')) return;
 
             const sbpLink = control.querySelector('[title="Search for posts"]');
@@ -108,7 +115,8 @@
         });
     }
 
-    if (window.location.href.indexOf("https://karachan.org/mod.php?/bans/add") === 0) {
+    if (window.location.href.indexOf("https://karachan.org/mod.php?/bans/add") === 0 || 
+        window.location.href.indexOf("https://karachan.org/mod.php?/rangebans/add") === 0) {
         addBanReasons();
     } else {
         window.addEventListener('load', addSBIPButton);
